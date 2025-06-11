@@ -59,7 +59,7 @@ window.app.component("header1", {
             :style="{fontSize: (titleSize || 40) +  'pt'}"
           >
             {{title}}
-          </h3>
+          </h2>
         </div>
     
         <!-- r2: Bottom info bar -->
@@ -77,6 +77,38 @@ window.app.component("header1", {
             <p>hamamura.caio@ifsp.edu.br</p>
           </div>
           <img src="img/Artboard 1 copy 2.png" height="135" alt="" />
+        </div>
+      </div>
+      `,
+});
+
+
+
+window.app.component("header2", {
+  setup(props) {
+
+
+    return {};
+  },
+  /*html*/
+  template: `
+        <div
+        style="
+          display: grid;
+          grid-template-rows: 75% 25%;
+          height: 700px;
+        "
+      >
+      <div
+          style="
+            background: url('img/fundo.png') no-repeat center/cover;
+            padding: 20px;
+          "
+        >
+        <slot name="top" />
+          </div>
+        <div style="padding: 20px">
+          <slot name="bottom" />
         </div>
       </div>
       `,

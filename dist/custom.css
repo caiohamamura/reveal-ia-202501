@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-.column {
+.col {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,9 +50,17 @@ p,
 ul>li,
 ol>li,
 li {
-    font-size: 22pt;
+    font-size: 26pt;
     text-align: left;
     margin: 5px 40px;
+}
+
+ul>li>ul>li {  
+    font-size: 20pt;
+}
+
+li>ul>li>ul>li { 
+    font-size: 16pt; 
 }
 
 img {

@@ -14,7 +14,7 @@
 
   <!-- Theme used for syntax highlighted code -->
   <link rel="stylesheet" href="dist/highlight/panda-syntax-dark.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <!-- <link rel="stylesheet" href="dist/highlight/dracula.css"> -->
 </head>
 
@@ -24,9 +24,9 @@
       <section>
         <header1 title="IAs Generativas" aula="08" curso="Inteligência Artificial">
           <img src="https://i.imgur.com/0OxER65.jpeg"
-            alt="">
+               alt="">
           <img src="https://i.imgur.com/5mk1t9G.png"
-            alt="">
+               alt="">
         </header1>
       </section>
 
@@ -40,70 +40,72 @@
           </ul>
           <li>E o processo contrário: gerar imagens a partir de informações?</li>
         </ul>
+        <img src="https://i.imgur.com/NIg65i0.png" alt="">
       </section>
 
       <!-- Slide 3: Configuração do projeto -->
 
       <section>
-
-        <md md="## Estrutura do Projeto"></md>
-
-        <pre><code class="plaintext" data-trim>
-projeto/
-├── app.py
-├── templates/
-│   ├── base.html
-│   ├── usuarios.html
-│   ├── posts.html
-│   └── ...
-├── static/
-│   └── style.css
-└── requirements.txt
-</code></pre>
-
-        <div class="fragment">
-
-          <md md="### Dependências (requirements.txt)"></md>
-
-          <pre><code data-trim>
-          flask
-          SQLAlchemy
-          pymysql
-</code></pre>
-
-        </div>
-
-      </section>
-
-      <!-- Slide 3: Diagrama do Banco de Dados -->
-      <section style="display: grid; grid-template-rows: auto 1fr auto;">
-        <h2>Modelo de Dados</h2>
-        <div class="mermaid-container center">
-          <div class="mermaid">
-            <pre>
-          erDiagram
-            direction LR
-
-              USUARIO ||--o{ POST : "possui"
-              USUARIO {
-              int id PK
-              string nome
-              string email
-              }
-              POST {
-              int id PK
-              string titulo
-              string conteudo
-              datetime data_criacao
-              int usuario_id FK
-              }
+        <div class="col">
+          <div class="col">
+            <h3>Redes Convolucionais</h3>
+            <md text="
+        - Camadas de **convolução** extraem features (bordas, texturas).
+        - `Fórmula`: $(f * g)(t) = \sum_{\tau} f(\tau)g(t - \tau)$
+      " />
+          </div>
+          <div class="col">
+            <div class="mermaid">
+              <pre>
+---
+config:
+  look: handDrawn
+  theme: dark
+  fontSize: 30
+---
+graph LR
+A[Input Image] --> B[Conv2D + ReLU]
+B --> C[Max Pooling]
+C --> D[Flatten]
+D --> E[Full Connected]
               </pre>
           </div>
         </div>
-        <div class="fragment center">
-          <p>Relacionamento: 1 usuário → N posts</p>
-        </div>
       </section>
+
+      <section data-auto-animate>
+  <h2>GANs: Duas Redes em Competição</h2>
+  <div class="row" data-id="gan-model">
+    <div class="col">
+      <h4>Generator</h4>
+      <p>Transforma ruído em imagens.</p>
+    </div>
+    <div class="col">
+      <h4>Discriminator</h4>
+      <p>Classifica: real ou fake?</p>
+    </div>
+  </div>
+</section>
+
+<section data-auto-animate>
+  <h2>GANs: Duas Redes em Competição</h2>
+  <div class="row" data-id="gan-model">
+    <div class="col" style="background: #44475a; border-radius: 8px;">
+      <h4>Generator</h4>
+      <md text="
+        - Entrada: **Vetor de ruído** (ex: `z ~ N(0,1)`)
+        - Saída: Imagem gerada
+      "/>
+    </div>
+    <div class="col" style="background: #44475a; border-radius: 8px;">
+      <h4>Discriminator</h4>
+      <md text="
+        - Entrada: Imagem (real ou fake)
+        - Saída: Probabilidade de ser real
+      "/>
+    </div>
+  </div>
+</section>
 
       <section>
         <h2>Criando o Banco de Dados</h2>
@@ -641,6 +643,7 @@ config:
         theme: "dracula",
         slideNumber: "h.v",
         navigationMode: "linear",
+        transition: "fade",
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealNotes, RevealZoom, RevealHighlight, RevealMath.KaTeX, RevealMermaid],
@@ -657,45 +660,12 @@ config:
       });
 
       deck1.initialize();
-      let line = null;
 
-      deck1.on("fragmentshown", (event) => {
-        console.log(event);
-        if (event.fragment.id === "start-highlight") {
-          if (line === null) {
-            line = new LeaderLine(
-              document.getElementById("start-highlight"),
-              document.getElementById("end-highlight"),
-              {
-                color: "#359830",
-                path: "arc",
-                hide: true,
-              }
-            );
-          }
-          line.show("draw", {
-            duration: 500,
-            timing: [0.58, 0, 0.42, 1],
-            loop: true,
-          });
-
-          console.log(line);
-        }
-      });
-      deck1.on("fragmenthidden", (event) => {
-        if (event.fragment.id === "start-highlight") {
-          line.hide("draw");
-        }
-      });
 
       deck1.on("slidechanged", (event) => {
         console.log(event);
         location.href =
           location.href.replace(/#*.*$/, "") + "#" + event.indexh;
-        if (line !== null) {
-          line.remove();
-          line = null;
-        }
       });
     }
 

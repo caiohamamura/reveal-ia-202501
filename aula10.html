@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title></title>
+
+  <link rel="stylesheet" href="dist/reset.css" />
+  <link rel="stylesheet" href="dist/reveal.css" />
+  <link rel="stylesheet" href="dist/theme/night.css" />
+  <link rel="stylesheet" href="dist/custom.css" />
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="dist/highlight/panda-syntax-dark.min.css" />
+
+  <!-- <link rel="stylesheet" href="dist/highlight/dracula.css"> -->
+</head>
+
+<body>
+  <div id="app" class="reveal">
+    <div class="slides">
+      <section>
+        <header1 title="O Crescimento das IAs Generativas" aula="10" curso="Inteligência Artificial">
+          <img src="https://i.imgur.com/SrgLDCd.png"
+               alt="">
+          <div class="col">
+            <img src="https://i.imgur.com/EKj7qTh.png" width="500"
+                 alt="">
+            <img src="https://i.imgur.com/ghexQXc.png" alt="" height="150">
+          </div>
+
+        </header1>
+      </section>
+
+      <section>
+        <h2>O que veremos nesta aula?</h2>
+        <div class="col">
+          <ul>
+            <li>O que vem depois das GAN?</li>
+            <li>Como superamos a dificuldade de treinamento das GAN?</li>
+            <li>Modelos de verossimilhança</li>
+            <li>Modelos de difusão</li>
+          </ul>
+          <img src="https://i.imgur.com/ghexQXc.png" style="align-self: center;" alt="">
+        </div>
+      </section>
+
+      <section data-auto-animate data-background="https://i.imgur.com/ZtB0oYn.png" data-background-size="100%"
+               data-auto-animate
+               data-background-opacity="0.1" data-transition="slide">
+        <section data-auto-animate data-background="https://i.imgur.com/ZtB0oYn.png" data-background-size="100%"
+                 data-background-opacity="1">
+          <h2 style="margin-top:-300px;color:black">GANs: Duas Redes em Competição</h2>
+        </section>
+        <section data-auto-animate>
+          <h2>GANs: Duas Redes em Competição</h2>
+          <div class="row" data-id="gan-model">
+            <div class="col" data-id="gan-col" style="background: #44475a; border-radius: 8px;">
+              <h4>Generator</h4>
+              <p>Transforma ruído em imagens.</p>
+            </div>
+
+            <div class="col" style="background: #44475a; border-radius: 8px;">
+              <h4>Discriminator</h4>
+              <p>Classifica: real ou fake?</p>
+            </div>
+          </div>
+        </section>
+
+        <section data-auto-animate>
+          <h2>GANs: Duas Redes em Competição</h2>
+          <h3>Problemas</h3>
+          <md md="
+ - Jogo de soma zero: precisam se equilibrar
+ - Bem desafiador equilibrar o jogo:
+   - Suavização de rótulos: definir o real como 0.9
+   - Treinamento desbalanceado:
+       - Taxa de aprendizado
+       - Treinar mais vezes a geradora 
+   - Normalização de batch (*batch normalization*)
+   - Poda dos gradientes (*gradient clipping*)
+  
+      " />
+
+        </section>
+
+        <section data-transition="slide">
+          <h2>Outros problemas</h2>
+          <md md="
+            - 🎯 Incapacidade de generalização e sobreajuste:
+              - Constrói apenas uma quantidade limitada de imagens
+            - ✅❌Necessidade de muitas amostras de treinamento
+            - ⌚Treinamento pesado e lento 
+          ">
+          </md
+
+               </section>
+        </section>
+        </section>
+        <section><h2>Tem saída?</h2></section>
+        <section></section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/math/math.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script src="plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.6.0/plugin/mermaid/mermaid.js"></script>
+  <script src="dist/vue.js"></script>
+
+  <script>
+    window.app = Vue.createApp({
+      setup() {
+        Vue.onMounted(() => {
+          initializeReveal();
+        });
+
+        return {};
+      },
+    });
+  </script>
+  <script src="plugin/leader-line.min.js"></script>
+  <script src="slides_template/header1.js"></script>
+  <script src="components/md.js"></script>
+  <script src="components/components.js"></script>
+
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    function initializeReveal() {
+      var deck1 = new Reveal(document.querySelector(".reveal"), {
+        controls: true,
+        controlsLayout: 'edges',
+        hash: true,
+        respondToHashChanges: true,
+        history: true,
+        keyboardCondition: "focused", // only react to keys when focused
+        theme: "dracula",
+        slideNumber: "h.v",
+        navigationMode: "linear",
+        transition: "slide",
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealNotes, RevealZoom, RevealHighlight, RevealMath.KaTeX, RevealMermaid],
+        // dependencies: [
+        // 	{ src: 'plugin/myhighlight/highlight.min.js' },
+        // 	{
+        // 		src: 'node_modules/reveal-code-focus/reveal-code-focus.js',
+        // 		async: true,
+        // 		callback: function () {
+        // 			RevealCodeFocus();
+        // 		}
+        // 	}
+        // ]
+      });
+
+      deck1.initialize();
+
+
+      deck1.on("slidechanged", (event) => {
+        console.log(event);
+        location.href =
+          location.href.replace(/#*.*$/, "") + "#" + event.indexh;
+      });
+    }
+
+    window.app.mount("#app");
+
+    // initializeReveal();
+  </script>
+</body>
+
+</html>
