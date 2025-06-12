@@ -55,11 +55,11 @@ li {
     margin: 5px 40px;
 }
 
-ul>li>ul>li {  
+ul>li>ul>li, ul>ul>li {  
     font-size: 20pt;
 }
 
-li>ul>li>ul>li { 
+li>ul>li>ul>li, ul>ul>ul>li { 
     font-size: 16pt; 
 }
 

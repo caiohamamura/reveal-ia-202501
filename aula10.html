@@ -98,9 +98,81 @@
 
                </section>
         </section>
-        </section>
-        <section><h2>Tem saída?</h2></section>
-        <section></section>
+      </section>
+      <section>
+        <h2>Modelos Baseado em Verossimilhança</h2>
+        <p>Buscam encontrar uma distribuição estatística das imagens.</p>
+        <p>A geração de novas imagens são amostragens dessa distribuição.</p>
+      </section>
+      <section data-auto-animate data-background="https://i.imgur.com/F4vioS3.png" data-background-size="70%">
+        <h2 style="margin-top: -350px; color: black">O que é uma distribuição?</h2>
+        <img>
+      </section>
+
+      <section data-auto-animate data-background="https://i.imgur.com/F4vioS3.png" data-background-size="100%"
+               data-background-opacity="0.2">
+        <h2>Distribuição normal</h2>
+        <ul>
+          <li>As imagens têm uma distribuição normal de dados?</li>
+          <li>Se analisarmos individualmente os pixels, não!</li>
+          <li>Então o que fazer?</li>
+        </ul>
+      </section>
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%"
+               data-background-opacity="0.1">
+        <h2>Autoencoder</h2>
+        <ul>
+          <li>Vamos utilizar uma rede neural que vai reduzir o número de "pixels" a poucos neurônios</li>
+        </ul>
+      </section>
+
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%"
+               data-background-opacity="1">
+        <h2 style="margin-top: -350px;color:black">Autoencoder</h2>
+      </section>
+
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%"
+               data-background-opacity="0.1">
+        <h2>Autoencoder</h2>
+        <ul>
+          <li>Com o autoencoder reduzimos os muitos pixels para um espaço latente menor</li>
+          <li>Semelhante aos embeddings...</li>
+          <li>Podemos treinar especificamente essa rede neural para que:</li>
+          <ul>
+            <li>Imagens semelhantes = Distribuição semelhante (normal)</li>
+          </ul>
+        </ul>
+      </section>
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%"
+               data-background-opacity="1">
+        <h2 style="margin-top: -350px;color:black">Autoencoder</h2>
+      </section>
+      <section data-auto-animate data-background="https://i.imgur.com/3rfRMDH.png" data-background-size="100%"
+               data-background-opacity="1">
+        <h2 style="margin-top: -350px;color:black">Distribuição normal duas variáveis</h2>
+      </section>
+      <section data-auto-animate data-background="https://i.imgur.com/b0Kwl2F.png" data-background-size="100%" data-background-opacity="1">
+        <h2 style="margin-top: -350px;color:white">Distribuição normal três variáveis</h2>
+      </section>
+
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%" data-background-opacity="0.1"> 
+        <h2>Treinando o autoencoder</h2>
+        <ul>
+          <li>Podemos treinar o autoencoder baseado no quão próximo da distribuição normal os neurônios vão chegar</li>
+        </ul>
+      </section>
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%"
+               data-background-opacity="1">
+        <div style="display: block; height:700px;width:440px;left:-40px;position: absolute;background-color: #000c;"></div>
+        <h2 style="margin-top: -350px;">Autoencoder</h2>
+      </section>
+
+      <section data-auto-animate data-background="https://i.imgur.com/NPH66lr.png" data-background-size="100%" data-background-opacity="0.1"> 
+        <h2>Treinando a parte decoder</h2>
+        <ul>
+          <li>O decoder precisa reconstruir, então basta treiná-la para reconstruir a imagem original!</li>
+        </ul>
+      </section>
     </div>
   </div>
 
